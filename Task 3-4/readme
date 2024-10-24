@@ -1,0 +1,9 @@
+Show that the realized diagrams (state machine and class
+diagram) as well as the simulation are mapped quite well to the
+real/target system.
+
+
+Show different implementations for retrieving information about
+the pressed button
+ Show the difference between polling-based and interrupt-based
+implementations
