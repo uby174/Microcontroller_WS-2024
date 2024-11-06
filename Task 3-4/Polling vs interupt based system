@@ -1,0 +1,14 @@
+ Polling-Based Implementation:
+
+Polling based system work by continously checking the state of the button inside the loop.
+
+If button is Pressed than it set button_pressed = True
+Is simple to implement but can less responsive if loop is high runtime.
+
+
+
+Interrupt-Based Implementation:
+
+A trigger is generated as soon as the button is pressed and system quickly responds to the interupt dur to it's high priority.
+
+attachInterrupt(digitalPinToInterrupt(2), buttonPressedISR, RISING); // attaching the interupt make our system more responsive but has a complex implementation
