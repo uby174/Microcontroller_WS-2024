@@ -1,6 +1,6 @@
-#define GREEN 5
-#define YELLOW 6
-#define RED 7
+#define GREEN 10
+#define YELLOW 11
+#define RED 12
 int state=0 ;
 
 
