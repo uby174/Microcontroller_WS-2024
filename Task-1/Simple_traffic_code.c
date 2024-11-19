@@ -1,53 +1,62 @@
-enum TrafficLightState { RED, GREEN, YELLOW };
-TrafficLightState currentState = RED;
+#define GREEN 5
+#define YELLOW 6
+#define RED 7
+int state=0 ;
 
-unsigned long previousMillis = 0;
 
-const unsigned long redDuration = 20000;    // 20 seconds
-const unsigned long greenDuration = 15000;  // 15 seconds
-const unsigned long yellowDuration = 5000;  // 5 seconds
-
-void setup() {
-  pinMode(13, OUTPUT); // Red LED
-  pinMode(12, OUTPUT); // Yellow LED
-  pinMode(11, OUTPUT); // Green LED
+void setup()
+{
+  pinMode(GREEN, OUTPUT);
+  pinMode(YELLOW, OUTPUT);
+  pinMode(RED, OUTPUT);
 }
 
-void loop() {
-  unsigned long currentMillis = millis();
+void loop()  
+{  
+  trafficLight();  
+}
 
-  switch (currentState) {
-    case RED:
-      digitalWrite(13, HIGH);
-      digitalWrite(12, LOW);
-      digitalWrite(11, LOW);
 
-      if (currentMillis - previousMillis >= redDuration) {
-        previousMillis = currentMillis;
-        currentState = GREEN;
-      }
-      break;
 
-    case GREEN:
-      digitalWrite(13, LOW);
-      digitalWrite(12, LOW);
-      digitalWrite(11, HIGH);
-
-      if (currentMillis - previousMillis >= greenDuration) {
-        previousMillis = currentMillis;
-        currentState = YELLOW;
-      }
-      break;
-
+void trafficLight()
+{ 
+  state= RED;
+  
+  switch (state)
+  {    
+	case RED:
+	redON();
+    delay(2000);
+    
     case YELLOW:
-      digitalWrite(13, LOW);
-      digitalWrite(12, HIGH);
-      digitalWrite(11, LOW);
+    yellowON();
+    delay(2000);
+       
+    case GREEN:
+	greenON();
+    delay(2000);
+    yellowON();
+    delay(2000);
+    }
+}
 
-      if (currentMillis - previousMillis >= yellowDuration) {
-        previousMillis = currentMillis;
-        currentState = RED;
-      }
-      break;
-  }
+void greenON()
+{
+  digitalWrite(GREEN, HIGH);
+  digitalWrite(YELLOW, LOW);
+  digitalWrite(RED, LOW);
+}
+
+void yellowON()
+{
+  digitalWrite(GREEN, LOW);
+  digitalWrite(YELLOW, HIGH);
+  digitalWrite(RED, LOW);
+}
+
+void redON()
+{
+  digitalWrite(GREEN, LOW);
+  digitalWrite(YELLOW, LOW);
+  digitalWrite(RED, HIGH);
 }
